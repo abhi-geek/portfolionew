@@ -13,13 +13,11 @@
     :root {
       --background: #F7F4EE;
       --surface: #FFFDF8;
-      --surface-soft: #FBF8F1;
       --text-primary: #2B2A28;
       --text-secondary: #6F6A64;
       --text-muted: #9A948C;
       --border: #E2DDD4;
       --border-soft: #EEE9E1;
-      --shadow: rgba(40, 36, 30, 0.08);
       --accent-blue: #168BD8;
       --accent-rust: #B85A37;
       --accent-green: #82B65B;
@@ -67,7 +65,8 @@
     .content-column {
       max-width: 720px;
       margin: 0 auto;
-      padding: 56px 24px 72px;
+      padding: 56px 24px 0;
+      position: relative;
     }
 
     .section-label {
@@ -82,6 +81,17 @@
       padding: 5px 12px;
       border-radius: 6px;
       display: inline-block;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .section-label:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(231,185,79,0.3);
+      border-color: #CDB45E;
+    }
+
+    .fade-in.visible .section-label {
+      animation: label-pop 400ms 120ms ease both;
     }
 
     .section { margin-top: 48px; }
@@ -115,6 +125,12 @@
       width: 64px;
       height: auto;
       image-rendering: pixelated;
+      animation: logo-float 3.5s ease-in-out infinite;
+      cursor: pointer;
+    }
+
+    .site-logo:hover {
+      animation: logo-wobble 0.5s ease forwards;
     }
 
     /* ── Hero ── */
@@ -180,6 +196,24 @@
       background-repeat: repeat;
     }
 
+    /* ── Corner marks ── */
+    .corner-marks {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .corner-mark {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+    }
+
+    .corner-mark.tl { top: 4px;    left: 4px;    border-top: 2px solid rgba(43,42,40,0.18); border-left: 2px solid rgba(43,42,40,0.18); }
+    .corner-mark.tr { top: 4px;    right: 4px;   border-top: 2px solid rgba(43,42,40,0.18); border-right: 2px solid rgba(43,42,40,0.18); }
+    .corner-mark.bl { bottom: 4px; left: 4px;    border-bottom: 2px solid rgba(43,42,40,0.18); border-left: 2px solid rgba(43,42,40,0.18); }
+    .corner-mark.br { bottom: 4px; right: 4px;   border-bottom: 2px solid rgba(43,42,40,0.18); border-right: 2px solid rgba(43,42,40,0.18); }
+
     .highlight {
       background: linear-gradient(120deg, rgba(231,185,79,0.28) 0%, rgba(231,185,79,0.18) 100%);
       border-bottom: 1.5px solid rgba(231,185,79,0.7);
@@ -214,8 +248,7 @@
     }
 
     /* ── Buttons ── */
-    .button-primary,
-    .button-secondary {
+    .button-primary {
       border-radius: 10px;
       padding: 10px 20px;
       font-size: 13px;
@@ -224,26 +257,32 @@
       text-decoration: none;
       display: inline-block;
       font-family: var(--font-sans);
-      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-    }
-
-    .button-primary {
       background: #2B2A28;
       color: #FFFDF8;
       border: 1px solid #2B2A28;
       box-shadow: 0 8px 18px rgba(43, 42, 40, 0.12);
+      position: relative;
+      overflow: hidden;
+      transition: transform 180ms ease, box-shadow 180ms ease;
     }
 
-    .button-secondary {
-      background: rgba(255, 253, 248, 0.72);
-      color: #2B2A28;
-      border: 1px solid #DDD7CE;
+    .button-primary::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      pointer-events: none;
     }
 
-    .button-primary:hover,
-    .button-secondary:hover {
+    .button-primary:hover {
       transform: translateY(-1px);
-      box-shadow: 0 12px 24px rgba(43, 42, 40, 0.16);
+      box-shadow: 0 12px 24px rgba(43, 42, 40, 0.2);
+    }
+
+    .button-primary:hover::before {
+      animation: shine-sweep 480ms ease forwards;
     }
 
     .hero-text-link {
@@ -269,6 +308,8 @@
         0 2px 8px rgba(40, 36, 30, 0.06);
       padding: 8px;
       margin: 0 auto 40px;
+      transition: transform 300ms ease, box-shadow 300ms ease;
+      will-change: transform;
     }
 
     .hero-card img,
@@ -346,6 +387,23 @@
       font-family: var(--font-mono);
       font-size: 12px;
       color: var(--text-primary);
+      position: relative;
+      display: inline-block;
+    }
+
+    .work-card-link::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: currentColor;
+      transition: width 220ms ease;
+    }
+
+    .work-card:hover .work-card-link::after {
+      width: 100%;
     }
 
     .work-card-thumb {
@@ -394,6 +452,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: color 160ms ease, transform 160ms ease;
+    }
+
+    .note-row:hover .note-icon {
+      color: var(--text-secondary);
+      transform: scale(1.18);
     }
 
     .note-title {
@@ -438,12 +502,18 @@
       color: var(--text-primary);
       font-size: 12px;
       box-shadow: 0 6px 14px rgba(40, 36, 30, 0.035);
-      transition: border-color 160ms ease, background 160ms ease;
+      transition: border-color 160ms ease, background 160ms ease, transform 160ms ease, box-shadow 160ms ease;
     }
 
     .pill:hover {
       border-color: #D7D0C5;
       background: rgba(255, 253, 248, 0.95);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(40, 36, 30, 0.09);
+    }
+
+    .pill.pill-enter {
+      animation: pill-pop 350ms ease both;
     }
 
     .pill-mascot {
@@ -497,15 +567,24 @@
       text-decoration: none;
       font-family: var(--font-mono);
       letter-spacing: 0.04em;
-      transition: color 160ms ease;
+      transition: color 160ms ease, transform 160ms ease;
     }
 
-    .contact-link:hover { color: var(--text-primary); }
+    .contact-link:hover { color: var(--text-primary); transform: translateY(-1px); }
+
+    .contact-link .icon {
+      transition: transform 160ms ease;
+    }
+
+    .contact-link:hover .icon {
+      transform: scale(1.2);
+    }
 
     /* ── Footer ── */
     .footer {
       margin-top: 40px;
       padding-top: 24px;
+      padding-bottom: 48px;
       border-top: 1px solid var(--border-soft);
       text-align: center;
       font-family: var(--font-mono);
@@ -522,7 +601,30 @@
       height: auto;
       image-rendering: pixelated;
       opacity: 0.6;
+      cursor: pointer;
     }
+
+    .footer-mascot:hover {
+      opacity: 1;
+      animation: logo-wobble 0.5s ease forwards;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .footer-email {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      transition: color 160ms ease;
+    }
+
+    .footer-email:hover { color: var(--text-secondary); }
 
     /* ── Icons ── */
     .icon {
@@ -530,6 +632,36 @@
       height: 16px;
       stroke-width: 1.6;
       flex-shrink: 0;
+    }
+
+    /* ── Keyframes ── */
+    @keyframes logo-float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-5px); }
+    }
+
+    @keyframes logo-wobble {
+      0%   { transform: rotate(0deg) scale(1); }
+      25%  { transform: rotate(-10deg) scale(1.1); }
+      60%  { transform: rotate(7deg) scale(1.08); }
+      80%  { transform: rotate(-3deg) scale(1.04); }
+      100% { transform: rotate(0deg) scale(1); }
+    }
+
+    @keyframes label-pop {
+      0%   { transform: scale(0.93) translateY(3px); }
+      60%  { transform: scale(1.04); }
+      100% { transform: scale(1) translateY(0); }
+    }
+
+    @keyframes pill-pop {
+      from { transform: scale(0.88) translateY(6px); }
+      to   { transform: scale(1) translateY(0); }
+    }
+
+    @keyframes shine-sweep {
+      from { left: -100%; }
+      to   { left: 140%; }
     }
 
     /* ── Reduced motion ── */
@@ -544,7 +676,7 @@
 
     /* ── Mobile ── */
     @media (max-width: 680px) {
-      .content-column { padding: 40px 18px 56px; }
+      .content-column { padding: 40px 18px 0; }
       .hero-title { font-size: 26px; letter-spacing: -0.025em; }
       .hero-description { font-size: 11px; }
       .work-card { grid-template-columns: 1fr; padding: 16px; }
@@ -558,6 +690,12 @@
 <div class="noise-overlay" aria-hidden="true"></div>
 <div class="page">
   <main class="content-column">
+    <div class="corner-marks" aria-hidden="true">
+      <span class="corner-mark tl"></span>
+      <span class="corner-mark tr"></span>
+      <span class="corner-mark bl"></span>
+      <span class="corner-mark br"></span>
+    </div>
 
     <!-- Header -->
     <header class="site-header fade-in">
@@ -792,11 +930,30 @@
 
         <a class="note-row" href="https://thebrainfart.substack.com/p/the-computer-that-never-stops-thinking" target="_blank" rel="noopener">
           <div class="note-icon" aria-hidden="true">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/>
-              <line x1="16" y1="17" x2="8" y2="17"/>
+            <svg class="icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+              <!-- CRT monitor body -->
+              <rect x="0" y="0" width="16" height="10" fill="#3A3734"/>
+              <rect x="1" y="1" width="14" height="8" fill="#1A1810"/>
+              <!-- Screen -->
+              <rect x="2" y="2" width="12" height="6" fill="#04060C"/>
+              <!-- Phosphor scanlines -->
+              <rect x="2" y="3" width="12" height="1" fill="#E7B94F" opacity="0.14"/>
+              <rect x="2" y="5" width="12" height="1" fill="#E7B94F" opacity="0.09"/>
+              <!-- Pixel glasses (brain mascot ref) left lens -->
+              <rect x="3" y="3" width="3" height="2" fill="#E7B94F" opacity="0.85"/>
+              <rect x="4" y="4" width="1" height="1" fill="#04060C"/>
+              <!-- Bridge -->
+              <rect x="6" y="4" width="2" height="1" fill="#E7B94F" opacity="0.5"/>
+              <!-- Right lens -->
+              <rect x="8" y="3" width="3" height="2" fill="#E7B94F" opacity="0.85"/>
+              <rect x="9" y="4" width="1" height="1" fill="#04060C"/>
+              <!-- Blinking cursor -->
+              <rect x="11" y="7" width="2" height="1" fill="#E7B94F"/>
+              <!-- Neck -->
+              <rect x="6" y="10" width="4" height="2" fill="#3A3734"/>
+              <!-- Base -->
+              <rect x="3" y="12" width="10" height="3" fill="#3A3734"/>
+              <rect x="4" y="12" width="8" height="1" fill="#5A5552"/>
             </svg>
           </div>
           <div>
@@ -808,11 +965,28 @@
 
         <a class="note-row" href="https://theoperators.substack.com/p/the-ip-base-pricing-model-ibpm" target="_blank" rel="noopener">
           <div class="note-icon" aria-hidden="true">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/>
-              <line x1="16" y1="17" x2="8" y2="17"/>
+            <svg class="icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+              <!-- Floppy disk body -->
+              <rect x="1" y="0" width="14" height="15" fill="#2A2928"/>
+              <!-- Edge highlights -->
+              <rect x="1" y="0" width="1" height="15" fill="#4A4846"/>
+              <rect x="1" y="0" width="13" height="1" fill="#4A4846"/>
+              <rect x="14" y="0" width="1" height="15" fill="#1A1918"/>
+              <rect x="1" y="14" width="14" height="1" fill="#1A1918"/>
+              <!-- Cream label -->
+              <rect x="2" y="1" width="9" height="5" fill="#F5E6BA"/>
+              <!-- Label text lines -->
+              <rect x="3" y="2" width="6" height="1" fill="#8B6C3A"/>
+              <rect x="3" y="4" width="4" height="1" fill="#B89050"/>
+              <!-- Write-protect notch -->
+              <rect x="11" y="1" width="2" height="3" fill="#151413"/>
+              <!-- Metal shutter -->
+              <rect x="2" y="7" width="12" height="5" fill="#8A8480"/>
+              <!-- Shutter slot -->
+              <rect x="5" y="8" width="6" height="3" fill="#1E1C1A"/>
+              <!-- Shutter rivets -->
+              <rect x="2" y="9" width="2" height="1" fill="#6A6460"/>
+              <rect x="12" y="9" width="2" height="1" fill="#6A6460"/>
             </svg>
           </div>
           <div>
@@ -824,11 +998,37 @@
 
         <a class="note-row" href="https://www.linkedin.com/pulse/problems-doing-deeptech-india-abhishek-kateliya-tknac/" target="_blank" rel="noopener">
           <div class="note-icon" aria-hidden="true">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/>
-              <line x1="16" y1="17" x2="8" y2="17"/>
+            <svg class="icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+              <!-- Chip body -->
+              <rect x="4" y="4" width="8" height="8" fill="#2A2928"/>
+              <rect x="4" y="4" width="8" height="1" fill="#4A4846"/>
+              <rect x="4" y="4" width="1" height="8" fill="#4A4846"/>
+              <rect x="11" y="4" width="1" height="8" fill="#1A1918"/>
+              <rect x="4" y="11" width="8" height="1" fill="#1A1918"/>
+              <!-- Die / circuit pattern -->
+              <rect x="5" y="5" width="6" height="6" fill="#0A1020"/>
+              <rect x="5" y="5" width="2" height="2" fill="#168BD8" opacity="0.85"/>
+              <rect x="8" y="5" width="2" height="2" fill="#E7B94F" opacity="0.85"/>
+              <rect x="5" y="8" width="2" height="2" fill="#E7B94F" opacity="0.85"/>
+              <rect x="8" y="8" width="2" height="2" fill="#168BD8" opacity="0.85"/>
+              <!-- Center hot-spot -->
+              <rect x="7" y="7" width="2" height="2" fill="#82B65B"/>
+              <!-- Left pins -->
+              <rect x="0" y="5" width="4" height="1" fill="#82B65B"/>
+              <rect x="0" y="7" width="4" height="1" fill="#82B65B"/>
+              <rect x="0" y="9" width="4" height="1" fill="#82B65B"/>
+              <!-- Right pins -->
+              <rect x="12" y="5" width="4" height="1" fill="#82B65B"/>
+              <rect x="12" y="7" width="4" height="1" fill="#82B65B"/>
+              <rect x="12" y="9" width="4" height="1" fill="#82B65B"/>
+              <!-- Top pins -->
+              <rect x="5" y="0" width="1" height="4" fill="#82B65B"/>
+              <rect x="7" y="0" width="1" height="4" fill="#82B65B"/>
+              <rect x="9" y="0" width="1" height="4" fill="#82B65B"/>
+              <!-- Bottom pins -->
+              <rect x="5" y="12" width="1" height="4" fill="#82B65B"/>
+              <rect x="7" y="12" width="1" height="4" fill="#82B65B"/>
+              <rect x="9" y="12" width="1" height="4" fill="#82B65B"/>
             </svg>
           </div>
           <div>
@@ -840,11 +1040,29 @@
 
         <a class="note-row" href="https://www.linkedin.com/pulse/how-business-strategy-doc-abhishek-kateliya-eda9c/" target="_blank" rel="noopener">
           <div class="note-icon" aria-hidden="true">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/>
-              <line x1="16" y1="17" x2="8" y2="17"/>
+            <svg class="icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+              <!-- Paper feed coming out top -->
+              <rect x="4" y="0" width="8" height="5" fill="#FFFDF8"/>
+              <rect x="4" y="0" width="1" height="5" fill="#D0C8C0"/>
+              <rect x="11" y="0" width="1" height="5" fill="#D0C8C0"/>
+              <!-- Paper text lines (dot-matrix style) -->
+              <rect x="5" y="1" width="5" height="1" fill="#D0C8C0"/>
+              <rect x="5" y="3" width="6" height="1" fill="#D0C8C0"/>
+              <!-- Printer body -->
+              <rect x="0" y="4" width="16" height="9" fill="#3A3734"/>
+              <!-- Paper slot -->
+              <rect x="3" y="4" width="10" height="2" fill="#1A1810"/>
+              <!-- Front grill panel -->
+              <rect x="1" y="7" width="10" height="5" fill="#2A2928"/>
+              <rect x="2" y="8" width="8" height="1" fill="#3A3734"/>
+              <rect x="2" y="10" width="8" height="1" fill="#3A3734"/>
+              <!-- Control panel -->
+              <rect x="11" y="7" width="4" height="5" fill="#4A4846"/>
+              <!-- LEDs: amber busy, green ready -->
+              <rect x="12" y="8" width="2" height="1" fill="#E7B94F"/>
+              <rect x="12" y="10" width="2" height="1" fill="#82B65B"/>
+              <!-- Base -->
+              <rect x="0" y="13" width="16" height="2" fill="#2A2928"/>
             </svg>
           </div>
           <div>
@@ -973,13 +1191,23 @@
           </svg>
           The Operator's Book
         </a>
+        <a href="mailto:hi.brainfart@gmail.com" class="contact-link" aria-label="Email">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          hi.brainfart@gmail.com
+        </a>
       </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer fade-in">
       <img src="assets/logoart-removebg-preview.png" class="footer-mascot" alt="" aria-hidden="true" />
-      <span>© abhikuchbhi · made with 💜 by all of my AI buddies · Copy freely, just give us a shoutout :P</span>
+      <div class="footer-content">
+        <span>© abhikuchbhi · made with 💜 by all of my AI buddies · Copy freely, just give us a shoutout :P</span>
+        <a href="mailto:hi.brainfart@gmail.com" class="footer-email">hi.brainfart@gmail.com</a>
+      </div>
     </footer>
 
   </main>
@@ -1025,12 +1253,34 @@
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
+        // Stagger pills inside this section
+        const pills = entry.target.querySelectorAll('.pill');
+        pills.forEach((pill, i) => {
+          pill.style.animationDelay = `${i * 55}ms`;
+          pill.classList.add('pill-enter');
+        });
         observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.08 });
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Hero card mouse-tilt
+  const heroCard = document.querySelector('.hero-card');
+  if (heroCard) {
+    heroCard.addEventListener('mousemove', (e) => {
+      const r = heroCard.getBoundingClientRect();
+      const dx = (e.clientX - r.left - r.width / 2) / r.width;
+      const dy = (e.clientY - r.top - r.height / 2) / r.height;
+      heroCard.style.transform = `perspective(900px) rotateX(${-dy * 3.5}deg) rotateY(${dx * 3.5}deg)`;
+    });
+    heroCard.addEventListener('mouseleave', () => {
+      heroCard.style.transition = 'transform 400ms ease';
+      heroCard.style.transform = '';
+      setTimeout(() => { heroCard.style.transition = ''; }, 420);
+    });
+  }
 </script>
 </body>
 </html>
