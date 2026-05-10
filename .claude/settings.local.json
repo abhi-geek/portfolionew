@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(open *)",
+      "Bash(brew list *)",
+      "Bash(python3 -c \"from PIL import Image; print\\('PIL ok'\\)\")",
+      "Bash(brew install *)",
+      "Bash(gifsicle --optimize=3 --colors 128 --lossy=60 /Users/abhishek/Personal/abhikuchbhi.in/assets/banner_gif.gif -o /Users/abhishek/Personal/abhikuchbhi.in/assets/banner_gif_opt.gif)",
+      "Bash(gifsicle --optimize=3 --colors 64 --lossy=80 /Users/abhishek/Personal/abhikuchbhi.in/assets/banner_gif.gif -o /Users/abhishek/Personal/abhikuchbhi.in/assets/banner_gif_opt.gif)",
+      "Bash(pip3 install *)",
+      "Bash(ffmpeg -i /Users/abhishek/Personal/abhikuchbhi.in/assets/banner_gif.gif -c:v libvpx-vp9 -b:v 0 -crf 38 -pix_fmt yuva420p -loop 0 -an /Users/abhishek/Personal/abhikuchbhi.in/assets/banner.webm -y)",
+      "Bash(ffmpeg -i /Users/abhishek/Personal/abhikuchbhi.in/assets/banner_gif.gif -c:v libx264 -pix_fmt yuv420p -crf 28 -movflags +faststart -an /Users/abhishek/Personal/abhikuchbhi.in/assets/banner.mp4 -y)"
+    ]
+  }
+}
