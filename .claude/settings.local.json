@@ -11,7 +11,8 @@
       "Bash(ffmpeg -i /Users/abhishek/Personal/abhikuchbhi.in/assets/banner_gif.gif -c:v libvpx-vp9 -b:v 0 -crf 38 -pix_fmt yuva420p -loop 0 -an /Users/abhishek/Personal/abhikuchbhi.in/assets/banner.webm -y)",
       "Bash(ffmpeg -i /Users/abhishek/Personal/abhikuchbhi.in/assets/banner_gif.gif -c:v libx264 -pix_fmt yuv420p -crf 28 -movflags +faststart -an /Users/abhishek/Personal/abhikuchbhi.in/assets/banner.mp4 -y)",
       "Bash(sips -g pixelWidth -g pixelHeight /Users/abhishek/Personal/abhikuchbhi.in/assets/footer_image-removebg-preview.png)",
-      "Bash(convert /Users/abhishek/Personal/abhikuchbhi.in/assets/footer_image-removebg-preview.png -trim -format \"%wx%h%O\" info:)"
+      "Bash(convert /Users/abhishek/Personal/abhikuchbhi.in/assets/footer_image-removebg-preview.png -trim -format \"%wx%h%O\" info:)",
+      "Bash(git *)"
     ]
   }
 }
