@@ -8,7 +8,7 @@
   <meta name="description" content="Deep tech operator. I build the commercial infrastructure frontier companies need to exist.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=IBM+Plex+Mono:wght@400;500&family=Jersey+20&display=swap" rel="stylesheet">
   <style>
     :root {
       --background: #F7F4EE;
@@ -70,24 +70,22 @@
     }
 
     .section-label {
-      font-family: var(--font-mono);
-      font-size: 10.5px;
+      font-family: "Jersey 20", monospace;
+      font-size: 22px;
       line-height: 1;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #6B4E1A;
-      background: #F5E6BA;
-      border: 1px solid #E2C87A;
-      padding: 5px 12px;
-      border-radius: 6px;
+      letter-spacing: 0.04em;
+      color: #9B4A12;
       display: inline-block;
-      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+      image-rendering: pixelated;
+      -webkit-font-smoothing: none;
+      position: relative;
     }
 
-    .section-label:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(231,185,79,0.3);
-      border-color: #CDB45E;
+    .section-label::before {
+      content: "▸ ";
+      color: #D4884A;
+      font-size: 18px;
+      vertical-align: middle;
     }
 
     .fade-in.visible .section-label {
@@ -113,26 +111,6 @@
     }
 
     /* ── Header ── */
-    .site-header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-
-    .site-logo {
-      width: 64px;
-      height: auto;
-      image-rendering: pixelated;
-      animation: logo-float 3.5s ease-in-out infinite;
-      cursor: pointer;
-    }
-
-    .site-logo:hover {
-      animation: logo-wobble 0.5s ease forwards;
-    }
-
     /* ── Hero ── */
     .hero {
       text-align: center;
@@ -140,13 +118,16 @@
     }
 
     .hero-title {
-      font-family: var(--font-sans);
-      font-size: clamp(28px, 3.8vw, 42px);
-      line-height: 1.1;
-      letter-spacing: -0.035em;
-      font-weight: 700;
+      font-family: "Jersey 20", monospace;
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+      font-weight: 400;
       color: var(--text-primary);
-      margin: 0 0 14px;
+      margin: 0 0 18px;
+      image-rendering: pixelated;
+      -webkit-font-smoothing: none;
+      font-smooth: never;
     }
 
     .typewriter-cursor {
@@ -249,40 +230,39 @@
 
     /* ── Buttons ── */
     .button-primary {
-      border-radius: 10px;
-      padding: 10px 20px;
-      font-size: 13px;
-      font-weight: 500;
+      font-family: "Jersey 20", monospace;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      padding: 9px 22px;
+      border-radius: 4px;
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
-      font-family: var(--font-sans);
+      image-rendering: pixelated;
+      -webkit-font-smoothing: none;
       background: #2B2A28;
       color: #FFFDF8;
-      border: 1px solid #2B2A28;
-      box-shadow: 0 8px 18px rgba(43, 42, 40, 0.12);
+      border: none;
       position: relative;
-      overflow: hidden;
-      transition: transform 180ms ease, box-shadow 180ms ease;
-    }
-
-    .button-primary::before {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-      pointer-events: none;
+      box-shadow:
+        0 4px 0 #0D0D0C,
+        0 6px 0 rgba(0,0,0,0.25);
+      transition: box-shadow 80ms ease, transform 80ms ease;
     }
 
     .button-primary:hover {
+      background: #3D3C3A;
       transform: translateY(-1px);
-      box-shadow: 0 12px 24px rgba(43, 42, 40, 0.2);
+      box-shadow:
+        0 5px 0 #0D0D0C,
+        0 7px 0 rgba(0,0,0,0.25);
     }
 
-    .button-primary:hover::before {
-      animation: shine-sweep 480ms ease forwards;
+    .button-primary:active {
+      transform: translateY(4px);
+      box-shadow:
+        0 0 0 #0D0D0C,
+        0 1px 0 rgba(0,0,0,0.2);
     }
 
     .hero-text-link {
@@ -320,15 +300,129 @@
     }
 
     /* ── About ── */
-    .about-text {
-      max-width: 560px;
-      margin: 0 auto;
-      text-align: center;
+    /* ── Thesis ── */
+    .thesis {
+      margin-top: 40px;
+      padding: 28px 32px;
+      background: rgba(231, 185, 79, 0.06);
+      border-radius: 14px;
+      position: relative;
+    }
+
+    .thesis-corner {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+    }
+
+    .thesis-corner.tl { top: 6px;    left: 6px;    border-top: 2px solid rgba(231,185,79,0.7); border-left: 2px solid rgba(231,185,79,0.7); }
+    .thesis-corner.tr { top: 6px;    right: 6px;   border-top: 2px solid rgba(231,185,79,0.7); border-right: 2px solid rgba(231,185,79,0.7); }
+    .thesis-corner.bl { bottom: 6px; left: 6px;    border-bottom: 2px solid rgba(231,185,79,0.7); border-left: 2px solid rgba(231,185,79,0.7); }
+    .thesis-corner.br { bottom: 6px; right: 6px;   border-bottom: 2px solid rgba(231,185,79,0.7); border-right: 2px solid rgba(231,185,79,0.7); }
+
+    .thesis-body {
       font-family: var(--font-mono);
       font-size: 13px;
-      line-height: 1.8;
+      line-height: 1.85;
       color: var(--text-secondary);
+      text-align: center;
     }
+
+    .thesis-body p {
+      margin: 0 0 10px;
+    }
+
+    .thesis-body p:last-child {
+      margin: 0;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .thesis-body strong {
+      color: var(--text-primary);
+    }
+
+    /* ── Work Timeline ── */
+    .timeline-log {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: rgba(255, 253, 248, 0.38);
+      box-shadow: 0 10px 24px rgba(40, 36, 30, 0.045);
+      overflow: hidden;
+      position: relative;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .tl-log-corner {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      z-index: 1;
+    }
+    .tl-log-corner.tl { top: 6px;    left: 6px;    border-top: 2px solid rgba(184,90,55,0.45); border-left: 2px solid rgba(184,90,55,0.45); }
+    .tl-log-corner.tr { top: 6px;    right: 6px;   border-top: 2px solid rgba(184,90,55,0.45); border-right: 2px solid rgba(184,90,55,0.45); }
+    .tl-log-corner.bl { bottom: 6px; left: 6px;    border-bottom: 2px solid rgba(184,90,55,0.45); border-left: 2px solid rgba(184,90,55,0.45); }
+    .tl-log-corner.br { bottom: 6px; right: 6px;   border-bottom: 2px solid rgba(184,90,55,0.45); border-right: 2px solid rgba(184,90,55,0.45); }
+
+    .tl-entry {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 15px 22px;
+      border-bottom: 1px solid var(--border-soft);
+      transition: background 160ms ease;
+    }
+    .tl-entry:last-child { border-bottom: none; }
+    .tl-entry:hover { background: rgba(184, 90, 55, 0.04); }
+
+    .tl-entry-year {
+      font-family: "Jersey 20", monospace;
+      font-size: 20px;
+      line-height: 1;
+      color: var(--accent-yellow);
+      min-width: 58px;
+      image-rendering: pixelated;
+      -webkit-font-smoothing: none;
+    }
+    .tl-entry-year.is-now { color: var(--accent-green); }
+
+    .tl-entry-role {
+      flex: 1;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+    .tl-entry-sub {
+      display: block;
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    .tl-entry-badge {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .tl-badge-live {
+      color: var(--accent-green);
+      border-color: rgba(130, 182, 91, 0.45);
+      background: rgba(130, 182, 91, 0.08);
+    }
+    .tl-badge-done {
+      color: var(--text-muted);
+      border-color: var(--border-soft);
+    }
+
+
 
     /* ── Work ── */
     .work-list {
@@ -423,6 +517,90 @@
     }
 
     /* ── Notes ── */
+    /* ── Publication cards ── */
+    .pub-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .pub-card {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 200px;
+      text-decoration: none;
+      display: block;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow:
+        0 20px 45px rgba(40, 36, 30, 0.08),
+        0 2px 8px rgba(40, 36, 30, 0.06);
+      padding: 6px;
+    }
+
+    .pub-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .pub-card-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 320ms ease;
+      image-rendering: pixelated;
+    }
+
+    .pub-card:hover .pub-card-bg { transform: scale(1.05); }
+
+    .pub-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(20,16,10,0.88) 0%, rgba(20,16,10,0.3) 60%, transparent 100%);
+    }
+
+    .pub-card-text {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px 18px;
+    }
+
+    .pub-card-title {
+      display: block;
+      font-family: "Jersey 20", monospace;
+      font-size: 22px;
+      color: #FFFDF8;
+      line-height: 1.1;
+      image-rendering: pixelated;
+      -webkit-font-smoothing: none;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.6);
+    }
+
+    .pub-card-sub {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      color: rgba(255,253,248,0.72);
+      margin-top: 5px;
+      line-height: 1.5;
+      letter-spacing: 0.03em;
+    }
+
+    @media (max-width: 520px) {
+      .pub-cards { grid-template-columns: 1fr; }
+      .pub-card { height: 180px; }
+    }
+
     .notes-card {
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -516,13 +694,6 @@
       animation: pill-pop 350ms ease both;
     }
 
-    .pill-mascot {
-      width: 15px;
-      height: 15px;
-      image-rendering: pixelated;
-      object-fit: contain;
-    }
-
     .principles-line {
       margin-top: 20px;
       text-align: center;
@@ -539,30 +710,123 @@
     }
 
     .contact-cta {
-      margin: 16px 0 28px;
-    }
-
-    .contact-text {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--text-secondary);
-      margin: 0 auto 28px;
-      max-width: 480px;
-      line-height: 1.7;
-    }
-
-    .contact-links {
+      margin: 16px 0;
       display: flex;
       justify-content: center;
-      gap: 28px;
+    }
+
+    .button-retro {
+      font-family: "Jersey 20", monospace;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      color: #FFFDF8;
+      background: #8B4513;
+      border: none;
+      padding: 9px 22px;
+      border-radius: 4px;
+      text-decoration: none;
+      display: inline-block;
+      image-rendering: pixelated;
+      -webkit-font-smoothing: none;
+      cursor: pointer;
+      position: relative;
+      box-shadow:
+        0 4px 0 #4A2008,
+        0 6px 0 rgba(0,0,0,0.2);
+      transition: box-shadow 80ms ease, transform 80ms ease;
+    }
+
+    .button-retro:hover {
+      background: #A0521A;
+      box-shadow:
+        0 4px 0 #4A2008,
+        0 6px 0 rgba(0,0,0,0.2);
+      transform: translateY(-1px);
+    }
+
+    .button-retro:active {
+      transform: translateY(4px);
+      box-shadow:
+        0 0 0 #4A2008,
+        0 1px 0 rgba(0,0,0,0.15);
+    }
+
+    /* ── Contact text box (rust) ── */
+    .contact-box {
+      margin-bottom: 20px;
+      padding: 22px 28px;
+      background: rgba(184, 90, 55, 0.05);
+      border-radius: 6px;
+      position: relative;
+    }
+
+    .contact-box-corner {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+    }
+    .contact-box-corner.tl { top: 5px;    left: 5px;    border-top: 2px solid rgba(184,90,55,0.45); border-left: 2px solid rgba(184,90,55,0.45); }
+    .contact-box-corner.tr { top: 5px;    right: 5px;   border-top: 2px solid rgba(184,90,55,0.45); border-right: 2px solid rgba(184,90,55,0.45); }
+    .contact-box-corner.bl { bottom: 5px; left: 5px;    border-bottom: 2px solid rgba(184,90,55,0.45); border-left: 2px solid rgba(184,90,55,0.45); }
+    .contact-box-corner.br { bottom: 5px; right: 5px;   border-bottom: 2px solid rgba(184,90,55,0.45); border-right: 2px solid rgba(184,90,55,0.45); }
+
+    .contact-box-intro {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .contact-box-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 20px;
+    }
+
+    .contact-box-list li {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #8B4513;
+      letter-spacing: 0.04em;
+    }
+
+    .contact-box-list li::before {
+      content: "→ ";
+      opacity: 0.6;
+    }
+
+    /* ── Socials box (sage) ── */
+    .socials-box {
+      margin-top: 20px;
+      padding: 20px 28px;
+      background: rgba(130, 182, 91, 0.07);
+      border-radius: 6px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
       flex-wrap: wrap;
     }
+
+    .socials-box-corner {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+    }
+    .socials-box-corner.tl { top: 5px;    left: 5px;    border-top: 2px solid rgba(130,182,91,0.5); border-left: 2px solid rgba(130,182,91,0.5); }
+    .socials-box-corner.tr { top: 5px;    right: 5px;   border-top: 2px solid rgba(130,182,91,0.5); border-right: 2px solid rgba(130,182,91,0.5); }
+    .socials-box-corner.bl { bottom: 5px; left: 5px;    border-bottom: 2px solid rgba(130,182,91,0.5); border-left: 2px solid rgba(130,182,91,0.5); }
+    .socials-box-corner.br { bottom: 5px; right: 5px;   border-bottom: 2px solid rgba(130,182,91,0.5); border-right: 2px solid rgba(130,182,91,0.5); }
 
     .contact-link {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      color: var(--text-secondary);
+      color: #4A7A2A;
       font-size: 12px;
       text-decoration: none;
       font-family: var(--font-mono);
@@ -570,15 +834,10 @@
       transition: color 160ms ease, transform 160ms ease;
     }
 
-    .contact-link:hover { color: var(--text-primary); transform: translateY(-1px); }
+    .contact-link:hover { color: #2B5A18; transform: translateY(-1px); }
 
-    .contact-link .icon {
-      transition: transform 160ms ease;
-    }
-
-    .contact-link:hover .icon {
-      transform: scale(1.2);
-    }
+    .contact-link .icon { transition: transform 160ms ease; }
+    .contact-link:hover .icon { transform: scale(1.2); }
 
     /* ── Footer ── */
     .footer {
@@ -596,35 +855,12 @@
       gap: 8px;
     }
 
-    .footer-mascot {
-      width: 18px;
-      height: auto;
-      image-rendering: pixelated;
-      opacity: 0.6;
-      cursor: pointer;
-    }
-
-    .footer-mascot:hover {
-      opacity: 1;
-      animation: logo-wobble 0.5s ease forwards;
-    }
-
     .footer-content {
       display: flex;
       flex-direction: column;
       gap: 5px;
       align-items: center;
     }
-
-    .footer-email {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      transition: color 160ms ease;
-    }
-
-    .footer-email:hover { color: var(--text-secondary); }
 
     /* ── Icons ── */
     .icon {
@@ -635,19 +871,6 @@
     }
 
     /* ── Keyframes ── */
-    @keyframes logo-float {
-      0%, 100% { transform: translateY(0px); }
-      50%       { transform: translateY(-5px); }
-    }
-
-    @keyframes logo-wobble {
-      0%   { transform: rotate(0deg) scale(1); }
-      25%  { transform: rotate(-10deg) scale(1.1); }
-      60%  { transform: rotate(7deg) scale(1.08); }
-      80%  { transform: rotate(-3deg) scale(1.04); }
-      100% { transform: rotate(0deg) scale(1); }
-    }
-
     @keyframes label-pop {
       0%   { transform: scale(0.93) translateY(3px); }
       60%  { transform: scale(1.04); }
@@ -657,11 +880,6 @@
     @keyframes pill-pop {
       from { transform: scale(0.88) translateY(6px); }
       to   { transform: scale(1) translateY(0); }
-    }
-
-    @keyframes shine-sweep {
-      from { left: -100%; }
-      to   { left: 140%; }
     }
 
     /* ── Reduced motion ── */
@@ -677,7 +895,7 @@
     /* ── Mobile ── */
     @media (max-width: 680px) {
       .content-column { padding: 40px 18px 0; }
-      .hero-title { font-size: 26px; letter-spacing: -0.025em; }
+      .hero-title { font-size: 32px; letter-spacing: 0; }
       .hero-description { font-size: 11px; }
       .work-card { grid-template-columns: 1fr; padding: 16px; }
       .work-card-thumb { order: -1; }
@@ -697,18 +915,13 @@
       <span class="corner-mark br"></span>
     </div>
 
-    <!-- Header -->
-    <header class="site-header fade-in">
-      <img src="assets/logoart-removebg-preview.png" class="site-logo" alt="Brain mascot logo" />
-    </header>
-
     <!-- Hero -->
     <section class="hero fade-in">
       <h1 class="hero-title">Hi, I'm Abhi<span id="tw-text"></span><span class="typewriter-cursor" aria-hidden="true"></span></h1>
-      <p class="hero-subtitle">Software engineer by start. <span class="highlight">Deep tech operator</span> by necessity.</p>
+      <p class="hero-subtitle">I help frontier-tech companies move from science to market.</p>
       <p class="hero-description">
-        I build the commercial infrastructure frontier companies need to exist —<br>
-        legal, IP strategy, regulatory, fundraising, semiconductor partnerships, team.
+        Software engineer turned deeptech operator. <br>
+        I build the commercial systems hard technologies need before they can scale: Team, IP, regulatory pathways, partnerships, fundraising narrative, legal infrastructure, and operating cadence.
       </p>
       <div class="hero-buttons">
         <a href="https://topmate.io/abhikuchbhi" class="button-primary" target="_blank" rel="noopener">
@@ -727,14 +940,71 @@
       </video>
     </div>
 
-    <!-- About -->
-    <section class="about section fade-in">
-      <div class="section-header">
-        <span class="section-label">About</span>
+    <!-- Thesis -->
+    <div class="thesis fade-in">
+      <div class="thesis-corner tl"></div>
+      <div class="thesis-corner tr"></div>
+      <div class="thesis-corner bl"></div>
+      <div class="thesis-corner br"></div>
+      <div class="thesis-body">
+        <p>Most deeptech companies do not die because the science fails.</p>
+        <p>They die because the operating layer around the science never becomes real: IP is unclear, regulatory paths are vague, partnerships move slowly, and the story is too complex for capital, customers, or talent to understand.</p>
+        <p>My work is building that missing layer.</p>
       </div>
-      <p class="about-text">
-        Started writing production code at JPMorgan — microservices for real financial products, the kind that can't fail. From there: blockchain, an NGO onboarding communities onto digital infrastructure, and a trade finance startup building NLP systems before LLMs existed. Went to Startup School to get founder reps — built a pharma supply chain play, shut it down when the numbers said to. Now at Anthriq, doing what a third cofounder does for a neurotech company. The through-line: hard science problems, and building the operational layer that makes them commercially real.
-      </p>
+    </div>
+
+    <!-- Work Timeline -->
+    <section class="section fade-in">
+      <div class="section-header">
+        <span class="section-label">Building over the years</span>
+      </div>
+      <div class="timeline-log">
+        <div class="tl-entry">
+          <span class="tl-entry-year is-now">NOW</span>
+          <div class="tl-entry-role">
+            Anthriq · Human-aware Tech
+            <span class="tl-entry-sub">Neurotech · BCI · Operations &amp; Strategy</span>
+          </div>
+          <span class="tl-entry-badge tl-badge-live"><span class="live-dot" style="width:5px;height:5px;top:0;margin-right:5px"></span>LIVE</span>
+        </div>
+
+        <div class="tl-entry">
+          <span class="tl-entry-year">2023</span>
+          <div class="tl-entry-role">
+            Stockup · Pharma Startup
+            <span class="tl-entry-sub">Procurement Ops &amp; Supply Chain · Barcode Tracker for Medicines</span>
+          </div>
+          <span class="tl-entry-badge tl-badge-done">DONE</span>
+        </div>
+
+        <div class="tl-entry">
+          <span class="tl-entry-year">2022</span>
+          <div class="tl-entry-role">
+            Valley Trade Finance Startup
+            <span class="tl-entry-sub">NLP · Pre-LLM · Trade Infrastructure</span>
+          </div>
+          <span class="tl-entry-badge tl-badge-done">DONE</span>
+        </div>
+
+        <div class="tl-entry">
+          <span class="tl-entry-year">2021</span>
+          <div class="tl-entry-role">
+            JPMorgan · Blockchain
+            <span class="tl-entry-sub">Microservices · Financial Products</span>
+          </div>
+          <span class="tl-entry-badge tl-badge-done">DONE</span>
+        </div>
+
+        <div class="tl-entry">
+          <span class="tl-entry-year">2018</span>
+          <div class="tl-entry-role">
+            Engineer Grad
+            <span class="tl-entry-sub">Where it started</span>
+          </div>
+          <span class="tl-entry-badge tl-badge-done">DONE</span>
+        </div>
+
+      </div>
     </section>
 
     <!-- Selected Work -->
@@ -754,52 +1024,7 @@
             </p>
             <span class="work-card-link">Visit Anthriq →</span>
           </div>
-          <svg class="work-card-thumb" viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <!-- Dark technical BCI background -->
-            <rect width="160" height="100" fill="#0D1117"/>
-            <!-- Grid -->
-            <line x1="0" y1="25" x2="160" y2="25" stroke="#168BD8" stroke-width="0.5" opacity="0.25"/>
-            <line x1="0" y1="50" x2="160" y2="50" stroke="#168BD8" stroke-width="0.5" opacity="0.25"/>
-            <line x1="0" y1="75" x2="160" y2="75" stroke="#168BD8" stroke-width="0.5" opacity="0.25"/>
-            <line x1="40" y1="0" x2="40" y2="100" stroke="#168BD8" stroke-width="0.5" opacity="0.25"/>
-            <line x1="80" y1="0" x2="80" y2="100" stroke="#168BD8" stroke-width="0.5" opacity="0.25"/>
-            <line x1="120" y1="0" x2="120" y2="100" stroke="#168BD8" stroke-width="0.5" opacity="0.25"/>
-            <!-- Brain pixel art (center) -->
-            <rect x="63" y="22" width="34" height="6" fill="#D4CAB8"/>
-            <rect x="59" y="28" width="42" height="8" fill="#C8BAA8"/>
-            <rect x="57" y="36" width="46" height="8" fill="#D4CAB8"/>
-            <rect x="59" y="44" width="42" height="8" fill="#C8BAA8"/>
-            <rect x="63" y="52" width="34" height="6" fill="#D4CAB8"/>
-            <rect x="69" y="58" width="22" height="5" fill="#C8BAA8"/>
-            <!-- Brain divide -->
-            <rect x="79" y="22" width="2" height="40" fill="#9A8880"/>
-            <!-- Electrode dots -->
-            <rect x="53" y="30" width="4" height="4" fill="#168BD8"/>
-            <rect x="103" y="30" width="4" height="4" fill="#168BD8"/>
-            <rect x="53" y="46" width="4" height="4" fill="#168BD8"/>
-            <rect x="103" y="46" width="4" height="4" fill="#168BD8"/>
-            <!-- Signal wave LEFT — green (EEG) -->
-            <rect x="6"  y="38" width="8" height="2" fill="#82B65B"/>
-            <rect x="16" y="34" width="4" height="2" fill="#82B65B"/>
-            <rect x="22" y="42" width="4" height="2" fill="#82B65B"/>
-            <rect x="28" y="30" width="4" height="2" fill="#82B65B"/>
-            <rect x="34" y="38" width="4" height="2" fill="#82B65B"/>
-            <rect x="40" y="34" width="10" height="2" fill="#82B65B"/>
-            <!-- Signal wave RIGHT — blue (BCI) -->
-            <rect x="110" y="38" width="8" height="2" fill="#168BD8"/>
-            <rect x="120" y="42" width="4" height="2" fill="#168BD8"/>
-            <rect x="126" y="34" width="4" height="2" fill="#168BD8"/>
-            <rect x="132" y="42" width="4" height="2" fill="#168BD8"/>
-            <rect x="138" y="36" width="6" height="2" fill="#168BD8"/>
-            <rect x="146" y="38" width="8" height="2" fill="#168BD8"/>
-            <!-- Bottom ECG-style trace -->
-            <rect x="10" y="78" width="140" height="2" fill="#168BD8" opacity="0.4"/>
-            <rect x="24" y="74" width="4" height="4" fill="#E7B94F"/>
-            <rect x="56" y="70" width="4" height="8" fill="#E7B94F"/>
-            <rect x="80" y="72" width="4" height="6" fill="#E7B94F"/>
-            <rect x="104" y="70" width="4" height="8" fill="#E7B94F"/>
-            <rect x="130" y="74" width="4" height="4" fill="#E7B94F"/>
-          </svg>
+          <img class="work-card-thumb" src="assets/anthriq_banner.png" alt="Anthriq" style="object-fit: cover;"/>
         </a>
 
         <!-- IBPM -->
@@ -812,58 +1037,7 @@
             </p>
             <span class="work-card-link">Read the paper →</span>
           </div>
-          <svg class="work-card-thumb" viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <!-- Warm research desk -->
-            <rect width="160" height="100" fill="#F5EFE4"/>
-            <!-- Desk surface -->
-            <rect x="0" y="80" width="160" height="20" fill="#C8A882"/>
-            <!-- Main document -->
-            <rect x="20" y="10" width="72" height="86" fill="#FFFDF8" rx="2"/>
-            <rect x="22" y="12" width="68" height="82" fill="#FAF6EE"/>
-            <!-- Doc heading -->
-            <rect x="26" y="18" width="48" height="4" fill="#2B2A28"/>
-            <rect x="26" y="25" width="36" height="2" fill="#9A948C"/>
-            <!-- Horizontal rule -->
-            <rect x="26" y="30" width="60" height="1" fill="#E2DDD4"/>
-            <!-- Text lines -->
-            <rect x="26" y="35" width="56" height="2" fill="#C8C0B8"/>
-            <rect x="26" y="40" width="52" height="2" fill="#C8C0B8"/>
-            <rect x="26" y="45" width="48" height="2" fill="#C8C0B8"/>
-            <!-- Chart area -->
-            <rect x="26" y="52" width="62" height="36" fill="#F0EAE0" rx="1"/>
-            <!-- Bar chart -->
-            <rect x="30" y="70" width="6" height="16" fill="#168BD8" opacity="0.7"/>
-            <rect x="39" y="63" width="6" height="23" fill="#168BD8"/>
-            <rect x="48" y="67" width="6" height="19" fill="#82B65B"/>
-            <rect x="57" y="58" width="6" height="28" fill="#168BD8"/>
-            <rect x="66" y="61" width="6" height="25" fill="#B85A37"/>
-            <rect x="75" y="54" width="6" height="32" fill="#168BD8"/>
-            <!-- Chart axes -->
-            <rect x="27" y="86" width="60" height="1" fill="#9A948C"/>
-            <rect x="27" y="53" width="1" height="34" fill="#9A948C"/>
-            <!-- Trend line -->
-            <rect x="30" y="77" width="4" height="1" fill="#E7B94F"/>
-            <rect x="38" y="72" width="4" height="1" fill="#E7B94F"/>
-            <rect x="46" y="68" width="4" height="1" fill="#E7B94F"/>
-            <rect x="54" y="64" width="4" height="1" fill="#E7B94F"/>
-            <rect x="62" y="60" width="4" height="1" fill="#E7B94F"/>
-            <rect x="70" y="57" width="4" height="1" fill="#E7B94F"/>
-            <rect x="78" y="54" width="4" height="1" fill="#E7B94F"/>
-            <!-- Sticky notes right side -->
-            <rect x="102" y="12" width="44" height="28" fill="#E7B94F" rx="2"/>
-            <rect x="106" y="17" width="32" height="2" fill="#C49A3C"/>
-            <rect x="106" y="22" width="26" height="2" fill="#C49A3C"/>
-            <rect x="106" y="27" width="30" height="2" fill="#C49A3C"/>
-            <rect x="106" y="32" width="20" height="2" fill="#C49A3C"/>
-            <!-- Second sticky note -->
-            <rect x="106" y="46" width="44" height="26" fill="#D4E8C2" rx="2"/>
-            <rect x="110" y="51" width="30" height="2" fill="#82B65B"/>
-            <rect x="110" y="56" width="24" height="2" fill="#82B65B"/>
-            <rect x="110" y="61" width="28" height="2" fill="#82B65B"/>
-            <!-- Pen -->
-            <rect x="100" y="78" width="3" height="18" fill="#2B2A28" rx="1"/>
-            <rect x="100" y="92" width="3" height="6" fill="#B85A37" rx="1"/>
-          </svg>
+          <img class="work-card-thumb" src="assets/ip_calc.png" alt="IP Base Pricing Model" style="object-fit: cover;"/>
         </a>
 
         <!-- DocRefGen -->
@@ -876,46 +1050,7 @@
             </p>
             <span class="work-card-link">View on GitHub →</span>
           </div>
-          <svg class="work-card-thumb" viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <!-- Browser chrome -->
-            <rect width="160" height="100" fill="#F0EAE0"/>
-            <rect x="6" y="6" width="148" height="88" fill="#FFFDF8" rx="5"/>
-            <!-- Browser title bar -->
-            <rect x="6" y="6" width="148" height="20" fill="#E8E2D8" rx="5"/>
-            <rect x="6" y="16" width="148" height="10" fill="#E8E2D8"/>
-            <!-- Traffic lights -->
-            <rect x="12" y="11" width="7" height="7" fill="#FF5F57" rx="4"/>
-            <rect x="22" y="11" width="7" height="7" fill="#FEBC2E" rx="4"/>
-            <rect x="32" y="11" width="7" height="7" fill="#28C840" rx="4"/>
-            <!-- URL bar -->
-            <rect x="44" y="10" width="88" height="9" fill="#FFFDF8" rx="4"/>
-            <rect x="48" y="13" width="44" height="2" fill="#9A948C"/>
-            <!-- Extension icon in bar -->
-            <rect x="136" y="10" width="10" height="9" fill="#E2DDD4" rx="2"/>
-            <rect x="138" y="12" width="6" height="6" fill="#168BD8" rx="1"/>
-            <!-- Doc list rows -->
-            <!-- Row 1 -->
-            <rect x="12" y="32" width="136" height="16" fill="#FAF6EE" rx="3"/>
-            <rect x="16" y="35" width="8" height="10" fill="#168BD8" rx="1"/>
-            <rect x="28" y="36" width="56" height="3" fill="#2B2A28"/>
-            <rect x="28" y="42" width="40" height="2" fill="#9A948C"/>
-            <rect x="110" y="35" width="32" height="3" fill="#82B65B" opacity="0.8"/>
-            <rect x="110" y="41" width="24" height="2" fill="#E2DDD4"/>
-            <!-- Row 2 -->
-            <rect x="12" y="52" width="136" height="16" fill="#FAF6EE" rx="3"/>
-            <rect x="16" y="55" width="8" height="10" fill="#B85A37" rx="1"/>
-            <rect x="28" y="56" width="64" height="3" fill="#2B2A28"/>
-            <rect x="28" y="62" width="48" height="2" fill="#9A948C"/>
-            <rect x="110" y="55" width="32" height="3" fill="#E7B94F" opacity="0.9"/>
-            <rect x="110" y="61" width="24" height="2" fill="#E2DDD4"/>
-            <!-- Row 3 -->
-            <rect x="12" y="72" width="136" height="16" fill="#FAF6EE" rx="3"/>
-            <rect x="16" y="75" width="8" height="10" fill="#82B65B" rx="1"/>
-            <rect x="28" y="76" width="52" height="3" fill="#2B2A28"/>
-            <rect x="28" y="82" width="36" height="2" fill="#9A948C"/>
-            <rect x="110" y="75" width="32" height="3" fill="#168BD8" opacity="0.8"/>
-            <rect x="110" y="81" width="24" height="2" fill="#E2DDD4"/>
-          </svg>
+          <img class="work-card-thumb" src="assets/docrefgen.png" alt="DocRefGen" style="object-fit: cover;"/>
         </a>
 
       </div>
@@ -1073,80 +1208,77 @@
         </a>
 
       </div>
+
+      <div class="pub-cards">
+
+        <a class="pub-card" href="https://thebrainfart.substack.com/" target="_blank" rel="noopener">
+          <div class="pub-card-inner">
+            <img class="pub-card-bg" src="assets/logoart-removebg-preview.png" alt="BrainFart"/>
+            <div class="pub-card-overlay"></div>
+            <div class="pub-card-text">
+              <span class="pub-card-title">BrainFart</span>
+              <span class="pub-card-sub">Essays on Science, Society and Logic</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="pub-card" href="https://theoperators.substack.com/" target="_blank" rel="noopener">
+          <div class="pub-card-inner">
+            <img class="pub-card-bg" src="assets/operator_image.png" alt="Operators Blog"/>
+            <div class="pub-card-overlay"></div>
+            <div class="pub-card-text">
+              <span class="pub-card-title">Operators Blog</span>
+              <span class="pub-card-sub">Operator's handbook</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
     </section>
 
     <!-- Principles / Interests -->
     <section class="section fade-in">
       <div class="section-header">
-        <span class="section-label">What lives rent-free in my head</span>
+        <span class="section-label">Currently consuming content</span>
       </div>
       <div class="pill-list">
         <span class="pill">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
           </svg>
-          BCI &amp; Neurotech
-        </span>
-        <span class="pill">
-          <img src="assets/logoart-removebg-preview.png" class="pill-mascot" alt="" aria-hidden="true" />
-          Consciousness
+          Why We Die — Venki Ramakrishnan
         </span>
         <span class="pill">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="4" y="4" width="16" height="16" rx="2"/>
-            <rect x="9" y="9" width="6" height="6"/>
-            <line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/>
-            <line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/>
-            <line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/>
-            <line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/>
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
           </svg>
-          Quantum Computing
+          Our Religions — Arvind Sharma
         </span>
         <span class="pill">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
           </svg>
-          AI Limits &amp; AGI
+          Principles — Ray Dalio
         </span>
         <span class="pill">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-            <path d="M2 17l10 5 10-5"/>
-            <path d="M2 12l10 5 10-5"/>
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
           </svg>
-          Material Science
+          Neuron Daily
         </span>
         <span class="pill">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="5"/>
-            <line x1="12" y1="1" x2="12" y2="3"/>
-            <line x1="12" y1="21" x2="12" y2="23"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="1" y1="12" x2="3" y2="12"/>
-            <line x1="21" y1="12" x2="23" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
           </svg>
-          Energy Systems
+          Fabricated Knowledge
         </span>
         <span class="pill">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="2" y1="12" x2="22" y2="12"/>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
           </svg>
-          Deep Tech Commercialisation
-        </span>
-        <span class="pill">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
-            <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
-          </svg>
-          IP Strategy
+          Asimov Press
         </span>
       </div>
-      <p class="principles-line">Hard science. Operational depth. Long time horizons.</p>
     </section>
 
     <!-- Contact -->
@@ -1154,15 +1286,31 @@
       <div class="section-header">
         <span class="section-label">Let's talk</span>
       </div>
-      <p class="contact-text">
-        If you're building something in deep tech and need an operator who's done the full stack of it — or you just want to think through a hard problem — hit the button below.
-      </p>
+      <div class="contact-box">
+        <div class="contact-box-corner tl"></div>
+        <div class="contact-box-corner tr"></div>
+        <div class="contact-box-corner bl"></div>
+        <div class="contact-box-corner br"></div>
+        <p class="contact-box-intro">I'm most useful to founders, researchers, and investors working on frontier technologies that need to become commercially real.<br><br>Reach out if you're thinking through:</p>
+        <ul class="contact-box-list">
+          <li>deeptech GTM</li>
+          <li>IP and licensing</li>
+          <li>regulatory pathways</li>
+          <li>semiconductor or hardware partnerships</li>
+          <li>fundraising narrative</li>
+          <li>category creation</li>
+        </ul>
+      </div>
       <div class="contact-cta">
-        <a href="https://topmate.io/abhikuchbhi" class="button-primary" target="_blank" rel="noopener">
-          Let's chat →
+        <a href="https://topmate.io/abhikuchbhi" class="button-retro" target="_blank" rel="noopener">
+          Start a Conversation
         </a>
       </div>
-      <div class="contact-links">
+      <div class="socials-box">
+        <div class="socials-box-corner tl"></div>
+        <div class="socials-box-corner tr"></div>
+        <div class="socials-box-corner bl"></div>
+        <div class="socials-box-corner br"></div>
         <a href="https://www.linkedin.com/in/abhishekkateliya/" class="contact-link" target="_blank" rel="noopener" aria-label="LinkedIn">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
@@ -1175,21 +1323,7 @@
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
           </svg>
-          X
-        </a>
-        <a href="https://thebrainfart.substack.com/" class="contact-link" target="_blank" rel="noopener" aria-label="Brain Fart Substack">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-            <polyline points="22,6 12,13 2,6"/>
-          </svg>
-          Brain Fart
-        </a>
-        <a href="https://theoperators.substack.com/" class="contact-link" target="_blank" rel="noopener" aria-label="The Operator's Book Substack">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-            <polyline points="22,6 12,13 2,6"/>
-          </svg>
-          The Operator's Book
+          X / Twitter
         </a>
         <a href="mailto:hi.brainfart@gmail.com" class="contact-link" aria-label="Email">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1203,10 +1337,8 @@
 
     <!-- Footer -->
     <footer class="footer fade-in">
-      <img src="assets/logoart-removebg-preview.png" class="footer-mascot" alt="" aria-hidden="true" />
       <div class="footer-content">
-        <span>© abhikuchbhi · made with 💜 by all of my AI buddies · Copy freely, just give us a shoutout :P</span>
-        <a href="mailto:hi.brainfart@gmail.com" class="footer-email">hi.brainfart@gmail.com</a>
+        <span>Built with vibes, curiosity, and a few AI buddies. Copy ideas freely. Credit generously. 🌻</span>
       </div>
     </footer>
 
@@ -1282,5 +1414,6 @@
     });
   }
 </script>
+
 </body>
 </html>

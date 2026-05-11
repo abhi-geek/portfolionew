@@ -12,7 +12,13 @@
       "Bash(ffmpeg -i /Users/abhishek/Personal/abhikuchbhi.in/assets/banner_gif.gif -c:v libx264 -pix_fmt yuv420p -crf 28 -movflags +faststart -an /Users/abhishek/Personal/abhikuchbhi.in/assets/banner.mp4 -y)",
       "Bash(sips -g pixelWidth -g pixelHeight /Users/abhishek/Personal/abhikuchbhi.in/assets/footer_image-removebg-preview.png)",
       "Bash(convert /Users/abhishek/Personal/abhikuchbhi.in/assets/footer_image-removebg-preview.png -trim -format \"%wx%h%O\" info:)",
-      "Bash(git *)"
+      "Bash(git *)",
+      "WebFetch(domain:cofounder.co)",
+      "Bash(curl -s https://cofounder.co)",
+      "Bash(curl -s \"https://cofounder.co/_next/static/chunks/139x23dwxpmh8.css\")",
+      "Bash(curl -s \"https://cofounder.co/_next/static/chunks/13y3l182d5m1d.css\")",
+      "Bash(awk -F: '$1>1154 && $1<1230')",
+      "Bash(awk *)"
     ]
   }
 }
