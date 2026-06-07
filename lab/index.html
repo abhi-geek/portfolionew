@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Lab — Abhishek Kateliya | Tools & Projects</title>
+
+  <meta name="description" content="Tools, Chrome extensions, papers, and open-source projects built by Abhishek Kateliya — deep tech operator and neurotech strategist.">
+  <meta name="author" content="Abhishek Kateliya">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://abhikuchbhi.in/lab/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://abhikuchbhi.in/lab/">
+  <meta property="og:title" content="Lab — Abhishek Kateliya | Tools & Projects">
+  <meta property="og:description" content="Tools, Chrome extensions, papers, and open-source projects built by Abhishek Kateliya.">
+  <meta property="og:image" content="https://abhikuchbhi.in/assets/banner_image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@abhikuchbhi">
+  <meta name="twitter:title" content="Lab — Abhishek Kateliya | Tools & Projects">
+  <meta name="twitter:description" content="Tools, Chrome extensions, papers, and open-source projects built by Abhishek Kateliya.">
+  <meta name="twitter:image" content="https://abhikuchbhi.in/assets/banner_image.png">
+
+  <link rel="icon" type="image/png" href="../assets/logoart-removebg-preview.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=IBM+Plex+Mono:wght@400;500&family=Jersey+20&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Lab — Abhishek Kateliya",
+    "url": "https://abhikuchbhi.in/lab/",
+    "description": "Tools, Chrome extensions, papers, and open-source projects built by Abhishek Kateliya.",
+    "author": {
+      "@type": "Person",
+      "name": "Abhishek Kateliya",
+      "url": "https://abhikuchbhi.in/"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --background: #F7F4EE;
+      --surface: #FFFDF8;
+      --text-primary: #2B2A28;
+      --text-secondary: #6F6A64;
+      --text-muted: #9A948C;
+      --border: #E2DDD4;
+      --border-soft: #EEE9E1;
+      --accent-blue: #168BD8;
+      --accent-rust: #B85A37;
+      --accent-green: #82B65B;
+      --accent-yellow: #E7B94F;
+      --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+      --font-mono: "IBM Plex Mono", "SF Mono", monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #F7F4EE; }
+    ::-webkit-scrollbar-thumb { background: #D8D1C7; border: 3px solid #F7F4EE; border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #C7BFB3; }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: #F7F4EE;
+      background-image:
+        linear-gradient(rgba(35, 35, 35, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(35, 35, 35, 0.035) 1px, transparent 1px);
+      background-size: 28px 28px;
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.038;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 192px 192px;
+    }
+
+    /* ── Layout ── */
+    .page { max-width: 720px; margin: 0 auto; padding: 40px 24px 72px; }
+
+    /* ── Nav ── */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .nav-logo {
+      font-family: "Jersey 20", monospace;
+      font-size: 20px;
+      color: var(--text-primary);
+      text-decoration: none;
+      image-rendering: pixelated;
+      -webkit-font-smoothing: none;
+      letter-spacing: 0.03em;
+    }
+
+    .nav-back {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 160ms ease;
+    }
+
+    .nav-back:hover { color: var(--text-secondary); }
+
+    /* ── Hero ── */
+    .lab-hero {
+      margin-bottom: 40px;
+    }
+
+    .lab-hero-tag {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      color: var(--accent-rust);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .lab-hero-title {
+      font-family: "Jersey 20", monospace;
+      font-size: clamp(36px, 6vw, 52px);
+      font-weight: 400;
+      color: var(--text-primary);
+      line-height: 1.1;
+      image-rendering: pixelated;
+      -webkit-font-smoothing: none;
+      margin-bottom: 12px;
+    }
+
+    .lab-hero-sub {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 480px;
+    }
+
+    /* ── Filter tabs ── */
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .filter-btn {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 5px 12px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 140ms ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      border-color: var(--text-primary);
+      color: var(--text-primary);
+      background: rgba(43,42,40,0.05);
+    }
+
+    /* ── Project grid ── */
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* ── Project card ── */
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 200ms ease, transform 200ms ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 12px 32px rgba(40,36,30,0.1);
+      transform: translateY(-2px);
+    }
+
+    .project-card-image {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      border-bottom: 1px solid var(--border-soft);
+      background: var(--background);
+    }
+
+    .project-card-image-placeholder {
+      width: 100%;
+      height: 140px;
+      background: var(--background);
+      border-bottom: 1px solid var(--border-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .placeholder-icon {
+      font-family: "Jersey 20", monospace;
+      font-size: 32px;
+      color: var(--border);
+      image-rendering: pixelated;
+      -webkit-font-smoothing: none;
+    }
+
+    .project-card-body {
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 8px;
+    }
+
+    .project-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .project-badge {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border-radius: 3px;
+      border: 1px solid;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .badge-chrome  { color: #168BD8; border-color: rgba(22,139,216,0.35); background: rgba(22,139,216,0.06); }
+    .badge-github  { color: #9B4A12; border-color: rgba(184,90,55,0.35);  background: rgba(184,90,55,0.06); }
+    .badge-paper   { color: #8A6A1A; border-color: rgba(231,185,79,0.45); background: rgba(231,185,79,0.08); }
+
+    .project-card-name {
+      font-family: "Jersey 20", monospace;
+      font-size: 20px;
+      color: var(--text-primary);
+      line-height: 1.1;
+      image-rendering: pixelated;
+      -webkit-font-smoothing: none;
+    }
+
+    .project-card-desc {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .project-card-footer {
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .project-cta {
+      font-family: "Jersey 20", monospace;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      padding: 7px 16px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      image-rendering: pixelated;
+      -webkit-font-smoothing: none;
+      background: #2B2A28;
+      color: #FFFDF8;
+      box-shadow: 0 3px 0 #0D0D0C, 0 5px 0 rgba(0,0,0,0.2);
+      transition: box-shadow 80ms ease, transform 80ms ease;
+    }
+
+    .project-cta:hover {
+      background: #3D3C3A;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 0 #0D0D0C, 0 6px 0 rgba(0,0,0,0.2);
+    }
+
+    .project-cta:active {
+      transform: translateY(3px);
+      box-shadow: 0 0 0 #0D0D0C, 0 1px 0 rgba(0,0,0,0.15);
+    }
+
+    .project-source-link {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 160ms ease;
+    }
+
+    .project-source-link:hover { color: var(--text-secondary); }
+
+    /* full-width card */
+    .project-card.full {
+      grid-column: 1 / -1;
+      flex-direction: row;
+    }
+
+    .project-card.full .project-card-image {
+      width: 220px;
+      height: auto;
+      flex-shrink: 0;
+      border-bottom: none;
+      border-right: 1px solid var(--border-soft);
+    }
+
+    .project-card.full .project-card-image-placeholder {
+      width: 220px;
+      height: auto;
+      min-height: 160px;
+      flex-shrink: 0;
+      border-bottom: none;
+      border-right: 1px solid var(--border-soft);
+    }
+
+    /* ── Footer ── */
+    .lab-footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-soft);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .lab-footer-text {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .lab-footer-link {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 160ms ease;
+    }
+
+    .lab-footer-link:hover { color: var(--text-secondary); }
+
+    /* ── Fade in ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 400ms ease, transform 400ms ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Mobile ── */
+    @media (max-width: 560px) {
+      .project-grid { grid-template-columns: 1fr; }
+      .project-card.full { flex-direction: column; }
+      .project-card.full .project-card-image,
+      .project-card.full .project-card-image-placeholder {
+        width: 100%;
+        height: 140px;
+        border-right: none;
+        border-bottom: 1px solid var(--border-soft);
+      }
+      .page { padding: 28px 18px 56px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<div class="page">
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a href="https://abhikuchbhi.in/" class="nav-logo">abhikuchbhi</a>
+    <a href="https://abhikuchbhi.in/" class="nav-back">← back to home</a>
+  </nav>
+
+  <!-- Hero -->
+  <header class="lab-hero fade-in">
+    <div class="lab-hero-tag">abhikuchbhi.in / lab</div>
+    <h1 class="lab-hero-title">Things I build &amp; ship</h1>
+    <p class="lab-hero-sub">Tools, extensions, frameworks, and papers. Built for founders, operators, and anyone in the deep-tech trenches.</p>
+  </header>
+
+  <!-- Filter -->
+  <div class="filter-bar fade-in" role="group" aria-label="Filter by type">
+    <button class="filter-btn active" data-filter="all">ALL</button>
+    <button class="filter-btn" data-filter="chrome-ext">CHROME EXT</button>
+    <button class="filter-btn" data-filter="github">GITHUB</button>
+    <button class="filter-btn" data-filter="paper">PAPER</button>
+  </div>
+
+  <!-- Projects -->
+  <div class="project-grid" id="project-grid">
+
+    <!-- DocRefGen -->
+    <article class="project-card fade-in" data-type="chrome-ext">
+      <img
+        class="project-card-image"
+        src="../assets/docrefgen.png"
+        alt="DocRefGen — document reference number generator"
+        loading="lazy"
+      >
+      <div class="project-card-body">
+        <div class="project-card-top">
+          <span class="project-badge badge-chrome">CHROME EXT</span>
+        </div>
+        <div class="project-card-name">DocRefGen</div>
+        <p class="project-card-desc">Auto-generates unique reference numbers for HR &amp; legal documents. Searchable audit log. One click, no copy-paste errors.</p>
+        <div class="project-card-footer">
+          <a class="project-cta" href="https://chromewebstore.google.com/detail/docrefgen/kaelflhmkalpnclekjkkmgceiiokhmjo" target="_blank" rel="noopener">Add to Chrome →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Markdown Browser -->
+    <article class="project-card fade-in" data-type="chrome-ext">
+      <div class="project-card-image-placeholder">
+        <span class="placeholder-icon">.MD</span>
+      </div>
+      <div class="project-card-body">
+        <div class="project-card-top">
+          <span class="project-badge badge-chrome">CHROME EXT</span>
+        </div>
+        <div class="project-card-name">Markdown Browser</div>
+        <p class="project-card-desc">Browse and edit local Markdown files directly in Chrome — no server, no setup. Works with file:// URLs out of the box.</p>
+        <div class="project-card-footer">
+          <a class="project-cta" href="https://chromewebstore.google.com/detail/markdown-browser/egadnmmhblnmjphmjfblgijjhcfofghe" target="_blank" rel="noopener">Add to Chrome →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Content Engine -->
+    <article class="project-card fade-in" data-type="github">
+      <div class="project-card-image-placeholder">
+        <span class="placeholder-icon">CAL</span>
+      </div>
+      <div class="project-card-body">
+        <div class="project-card-top">
+          <span class="project-badge badge-github">GITHUB</span>
+        </div>
+        <div class="project-card-name">Content Engine</div>
+        <p class="project-card-desc">Monthly social content calendar generator for founders. Upload your brand docs, fill a brief — get a full LinkedIn &amp; Twitter calendar via Gemini + n8n. Mock mode included.</p>
+        <div class="project-card-footer">
+          <a class="project-cta" href="https://github.com/abhi-geek/content-engine" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- operators-claude-skills -->
+    <article class="project-card fade-in" data-type="github">
+      <div class="project-card-image-placeholder">
+        <span class="placeholder-icon">OPS</span>
+      </div>
+      <div class="project-card-body">
+        <div class="project-card-top">
+          <span class="project-badge badge-github">GITHUB</span>
+        </div>
+        <div class="project-card-name">Operators Claude Skills</div>
+        <p class="project-card-desc">Claude AI skills for deep-tech operators — IP strategy, legal structuring, regulatory pathway analysis, and fundraising narrative. Drop into any Claude workflow.</p>
+        <div class="project-card-footer">
+          <a class="project-cta" href="https://github.com/abhi-geek/operators-claude-skills" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- IP Base Pricing Model — full width -->
+    <article class="project-card full fade-in" data-type="paper">
+      <img
+        class="project-card-image"
+        src="../assets/ip_calc.png"
+        alt="IP Base Pricing Model — framework for pricing deep tech IP"
+        loading="lazy"
+      >
+      <div class="project-card-body">
+        <div class="project-card-top">
+          <span class="project-badge badge-paper">PAPER</span>
+        </div>
+        <div class="project-card-name">IP Base Pricing Model (IBPM)</div>
+        <p class="project-card-desc">A pricing framework for novel deep tech IP with no revenue history and no comparable transactions. Covers valuation anchors, risk-adjusted pricing, and negotiation floors for frontier science founders and IP counsel.</p>
+        <div class="project-card-footer">
+          <a class="project-cta" href="https://theoperators.substack.com/p/the-ip-base-pricing-model-ibpm" target="_blank" rel="noopener">Read the paper →</a>
+          <a class="project-source-link" href="https://theoperators.substack.com/" target="_blank" rel="noopener">The Operator's Book ↗</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="lab-footer">
+    <span class="lab-footer-text">built by <a class="lab-footer-link" href="https://abhikuchbhi.in/">abhishek kateliya</a></span>
+    <a class="lab-footer-link" href="https://theoperators.substack.com/" target="_blank" rel="noopener">subscribe to the operator's book →</a>
+  </footer>
+
+</div>
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.transitionDelay = `${i * 60}ms`;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.06 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Filter
+  const btns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.project-card');
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        const show = filter === 'all' || card.dataset.type === filter;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
