@@ -229,12 +229,23 @@
     .badge-chrome { color: #168BD8; border-color: rgba(22,139,216,0.35); background: rgba(22,139,216,0.06); }
     .badge-github { color: #9B4A12; border-color: rgba(184,90,55,0.35);  background: rgba(184,90,55,0.06); }
     .badge-paper  { color: #8A6A1A; border-color: rgba(231,185,79,0.45); background: rgba(231,185,79,0.08); }
+    .badge-claude { color: #4A7A2A; border-color: rgba(130,182,91,0.45); background: rgba(130,182,91,0.08); }
 
     .project-desc {
       font-family: var(--font-mono);
       font-size: 11.5px;
       color: var(--text-secondary);
       line-height: 1.65;
+    }
+
+    .project-desc code {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      background: rgba(43,42,40,0.07);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 1px 5px;
+      color: var(--text-primary);
     }
 
     .project-cta {
@@ -338,6 +349,7 @@
     <button class="filter-btn active" data-filter="all">ALL</button>
     <button class="filter-btn" data-filter="chrome-ext">CHROME EXT</button>
     <button class="filter-btn" data-filter="github">GITHUB</button>
+    <button class="filter-btn" data-filter="claude-skill">CLAUDE SKILL</button>
     <button class="filter-btn" data-filter="paper">PAPER</button>
   </div>
 
@@ -377,15 +389,48 @@
       <a class="project-cta" href="https://github.com/abhi-geek/content-engine" target="_blank" rel="noopener">View on GitHub →</a>
     </article>
 
-    <article class="project-item" data-type="github">
+    <article class="project-item" data-type="claude-skill">
       <div class="project-item-main">
         <div class="project-item-top">
-          <span class="project-name">Operators Claude Skills</span>
-          <span class="project-badge badge-github">GITHUB</span>
+          <span class="project-name">IP Landscape</span>
+          <span class="project-badge badge-claude">CLAUDE SKILL</span>
         </div>
-        <p class="project-desc">Claude AI skills for deep-tech operators — IP strategy, legal structuring, regulatory pathway analysis, and fundraising narrative. Drop into any Claude workflow.</p>
+        <p class="project-desc">Professional-grade IP landscape analysis — patent strategy, prior art search, freedom-to-operate analysis, filing roadmap, and competitor patent mapping. Invoke with <code>/intellectual-property:ip-landscape</code>.</p>
       </div>
-      <a class="project-cta" href="https://github.com/abhi-geek/operators-claude-skills" target="_blank" rel="noopener">View on GitHub →</a>
+      <a class="project-cta" href="https://github.com/abhi-geek/operators-claude-skills/blob/main/intellectual-property/ip-landscape.md" target="_blank" rel="noopener">Get skill →</a>
+    </article>
+
+    <article class="project-item" data-type="claude-skill">
+      <div class="project-item-main">
+        <div class="project-item-top">
+          <span class="project-name">Trademark Clearance</span>
+          <span class="project-badge badge-claude">CLAUDE SKILL</span>
+        </div>
+        <p class="project-desc">10-step brand name clearance across trademark registries (US, EU, UK, India, WIPO), domain availability, social handles, foreign language meaning, and likelihood-of-confusion analysis with a full risk matrix. Invoke with <code>/intellectual-property:trademark-clearance</code>.</p>
+      </div>
+      <a class="project-cta" href="https://github.com/abhi-geek/operators-claude-skills/blob/main/intellectual-property/trademark-clearance.md" target="_blank" rel="noopener">Get skill →</a>
+    </article>
+
+    <article class="project-item" data-type="claude-skill">
+      <div class="project-item-main">
+        <div class="project-item-top">
+          <span class="project-name">NDA Review</span>
+          <span class="project-badge badge-claude">CLAUDE SKILL</span>
+        </div>
+        <p class="project-desc">Party-aware NDA analysis — surfaces red flags, non-standard terms, missing clauses, and jurisdiction-specific enforceability issues in a structured table. Invoke with <code>/legal:nda-review</code>.</p>
+      </div>
+      <a class="project-cta" href="https://github.com/abhi-geek/operators-claude-skills/blob/main/legal/nda-review.md" target="_blank" rel="noopener">Get skill →</a>
+    </article>
+
+    <article class="project-item" data-type="claude-skill">
+      <div class="project-item-main">
+        <div class="project-item-top">
+          <span class="project-name">Term Sheet Analyzer</span>
+          <span class="project-badge badge-claude">CLAUDE SKILL</span>
+        </div>
+        <p class="project-desc">Founder-first term sheet analysis — clause-by-clause scoring, red flag detection, exit waterfall simulation, option pool shuffle modeling, and a negotiation playbook. Covers US/Delaware, India (FEMA/SEBI), and Singapore across pre-seed to Series A. Invoke with <code>/legal:term-sheet-analyzer</code>.</p>
+      </div>
+      <a class="project-cta" href="https://github.com/abhi-geek/operators-claude-skills/blob/main/legal/term-sheet-analyzer.md" target="_blank" rel="noopener">Get skill →</a>
     </article>
 
     <article class="project-item" data-type="paper">
