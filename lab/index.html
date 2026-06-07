@@ -52,10 +52,6 @@
       --text-muted: #9A948C;
       --border: #E2DDD4;
       --border-soft: #EEE9E1;
-      --accent-blue: #168BD8;
-      --accent-rust: #B85A37;
-      --accent-green: #82B65B;
-      --accent-yellow: #E7B94F;
       --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
       --font-mono: "IBM Plex Mono", "SF Mono", monospace;
     }
@@ -72,8 +68,8 @@
       font-family: var(--font-sans);
       background-color: #F7F4EE;
       background-image:
-        linear-gradient(rgba(35, 35, 35, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(35, 35, 35, 0.035) 1px, transparent 1px);
+        linear-gradient(rgba(35,35,35,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(35,35,35,0.035) 1px, transparent 1px);
       background-size: 28px 28px;
       color: var(--text-primary);
       -webkit-font-smoothing: antialiased;
@@ -89,7 +85,6 @@
       background-size: 192px 192px;
     }
 
-    /* ── Layout ── */
     .page { max-width: 720px; margin: 0 auto; padding: 40px 24px 72px; }
 
     /* ── Nav ── */
@@ -118,24 +113,19 @@
       color: var(--text-muted);
       text-decoration: none;
       letter-spacing: 0.04em;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
       transition: color 160ms ease;
     }
 
     .nav-back:hover { color: var(--text-secondary); }
 
     /* ── Hero ── */
-    .lab-hero {
-      margin-bottom: 40px;
-    }
+    .lab-hero { margin-bottom: 36px; }
 
     .lab-hero-tag {
       font-family: var(--font-mono);
       font-size: 9px;
       letter-spacing: 0.16em;
-      color: var(--accent-rust);
+      color: #B85A37;
       text-transform: uppercase;
       margin-bottom: 10px;
     }
@@ -159,12 +149,12 @@
       max-width: 480px;
     }
 
-    /* ── Filter tabs ── */
+    /* ── Filter bar ── */
     .filter-bar {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .filter-btn {
@@ -187,72 +177,42 @@
       background: rgba(43,42,40,0.05);
     }
 
-    /* ── Project grid ── */
-    .project-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    /* ── Project card ── */
-    .project-card {
-      background: var(--surface);
+    /* ── Project list ── */
+    .project-list {
       border: 1px solid var(--border);
       border-radius: 4px;
+      background: var(--surface);
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: box-shadow 200ms ease, transform 200ms ease;
-      text-decoration: none;
-      color: inherit;
     }
 
-    .project-card:hover {
-      box-shadow: 0 12px 32px rgba(40,36,30,0.1);
-      transform: translateY(-2px);
-    }
-
-    .project-card-image {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-      object-position: top;
-      display: block;
-      border-bottom: 1px solid var(--border-soft);
-      background: var(--background);
-    }
-
-    .project-card-image-placeholder {
-      width: 100%;
-      height: 140px;
-      background: var(--background);
-      border-bottom: 1px solid var(--border-soft);
+    .project-item {
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 20px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-soft);
+      transition: background 160ms ease;
     }
 
-    .placeholder-icon {
+    .project-item:last-child { border-bottom: none; }
+    .project-item:hover { background: rgba(43,42,40,0.02); }
+
+    .project-item-main { flex: 1; min-width: 0; }
+
+    .project-item-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .project-name {
       font-family: "Jersey 20", monospace;
-      font-size: 32px;
-      color: var(--border);
+      font-size: 20px;
+      color: var(--text-primary);
+      line-height: 1;
       image-rendering: pixelated;
       -webkit-font-smoothing: none;
-    }
-
-    .project-card-body {
-      padding: 18px 20px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      gap: 8px;
-    }
-
-    .project-card-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
     }
 
     .project-badge {
@@ -266,40 +226,22 @@
       flex-shrink: 0;
     }
 
-    .badge-chrome  { color: #168BD8; border-color: rgba(22,139,216,0.35); background: rgba(22,139,216,0.06); }
-    .badge-github  { color: #9B4A12; border-color: rgba(184,90,55,0.35);  background: rgba(184,90,55,0.06); }
-    .badge-paper   { color: #8A6A1A; border-color: rgba(231,185,79,0.45); background: rgba(231,185,79,0.08); }
+    .badge-chrome { color: #168BD8; border-color: rgba(22,139,216,0.35); background: rgba(22,139,216,0.06); }
+    .badge-github { color: #9B4A12; border-color: rgba(184,90,55,0.35);  background: rgba(184,90,55,0.06); }
+    .badge-paper  { color: #8A6A1A; border-color: rgba(231,185,79,0.45); background: rgba(231,185,79,0.08); }
 
-    .project-card-name {
-      font-family: "Jersey 20", monospace;
-      font-size: 20px;
-      color: var(--text-primary);
-      line-height: 1.1;
-      image-rendering: pixelated;
-      -webkit-font-smoothing: none;
-    }
-
-    .project-card-desc {
+    .project-desc {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 11.5px;
       color: var(--text-secondary);
       line-height: 1.65;
-      flex: 1;
-    }
-
-    .project-card-footer {
-      margin-top: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
     }
 
     .project-cta {
       font-family: "Jersey 20", monospace;
       font-size: 13px;
       letter-spacing: 0.04em;
-      padding: 7px 16px;
+      padding: 7px 18px;
       border-radius: 4px;
       border: none;
       cursor: pointer;
@@ -309,8 +251,10 @@
       -webkit-font-smoothing: none;
       background: #2B2A28;
       color: #FFFDF8;
+      white-space: nowrap;
+      flex-shrink: 0;
       box-shadow: 0 3px 0 #0D0D0C, 0 5px 0 rgba(0,0,0,0.2);
-      transition: box-shadow 80ms ease, transform 80ms ease;
+      transition: box-shadow 80ms ease, transform 80ms ease, background 80ms ease;
     }
 
     .project-cta:hover {
@@ -324,43 +268,9 @@
       box-shadow: 0 0 0 #0D0D0C, 0 1px 0 rgba(0,0,0,0.15);
     }
 
-    .project-source-link {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--text-muted);
-      text-decoration: none;
-      letter-spacing: 0.04em;
-      transition: color 160ms ease;
-    }
-
-    .project-source-link:hover { color: var(--text-secondary); }
-
-    /* full-width card */
-    .project-card.full {
-      grid-column: 1 / -1;
-      flex-direction: row;
-    }
-
-    .project-card.full .project-card-image {
-      width: 220px;
-      height: auto;
-      flex-shrink: 0;
-      border-bottom: none;
-      border-right: 1px solid var(--border-soft);
-    }
-
-    .project-card.full .project-card-image-placeholder {
-      width: 220px;
-      height: auto;
-      min-height: 160px;
-      flex-shrink: 0;
-      border-bottom: none;
-      border-right: 1px solid var(--border-soft);
-    }
-
     /* ── Footer ── */
     .lab-footer {
-      margin-top: 56px;
+      margin-top: 48px;
       padding-top: 24px;
       border-top: 1px solid var(--border-soft);
       display: flex;
@@ -394,25 +304,14 @@
     }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-    /* ── Mobile ── */
     @media (max-width: 560px) {
-      .project-grid { grid-template-columns: 1fr; }
-      .project-card.full { flex-direction: column; }
-      .project-card.full .project-card-image,
-      .project-card.full .project-card-image-placeholder {
-        width: 100%;
-        height: 140px;
-        border-right: none;
-        border-bottom: 1px solid var(--border-soft);
-      }
       .page { padding: 28px 18px 56px; }
+      .project-item { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .project-cta { align-self: flex-start; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
@@ -443,98 +342,61 @@
   </div>
 
   <!-- Projects -->
-  <div class="project-grid" id="project-grid">
+  <div class="project-list fade-in" id="project-list">
 
-    <!-- DocRefGen -->
-    <article class="project-card fade-in" data-type="chrome-ext">
-      <img
-        class="project-card-image"
-        src="../assets/docrefgen.png"
-        alt="DocRefGen — document reference number generator"
-        loading="lazy"
-      >
-      <div class="project-card-body">
-        <div class="project-card-top">
+    <article class="project-item" data-type="chrome-ext">
+      <div class="project-item-main">
+        <div class="project-item-top">
+          <span class="project-name">DocRefGen</span>
           <span class="project-badge badge-chrome">CHROME EXT</span>
         </div>
-        <div class="project-card-name">DocRefGen</div>
-        <p class="project-card-desc">Auto-generates unique reference numbers for HR &amp; legal documents. Searchable audit log. One click, no copy-paste errors.</p>
-        <div class="project-card-footer">
-          <a class="project-cta" href="https://chromewebstore.google.com/detail/docrefgen/kaelflhmkalpnclekjkkmgceiiokhmjo" target="_blank" rel="noopener">Add to Chrome →</a>
-        </div>
+        <p class="project-desc">Auto-generates unique reference numbers for HR &amp; legal documents. Searchable audit log. One click, no copy-paste errors.</p>
       </div>
+      <a class="project-cta" href="https://chromewebstore.google.com/detail/docrefgen/kaelflhmkalpnclekjkkmgceiiokhmjo" target="_blank" rel="noopener">Add to Chrome →</a>
     </article>
 
-    <!-- Markdown Browser -->
-    <article class="project-card fade-in" data-type="chrome-ext">
-      <div class="project-card-image-placeholder">
-        <span class="placeholder-icon">.MD</span>
-      </div>
-      <div class="project-card-body">
-        <div class="project-card-top">
+    <article class="project-item" data-type="chrome-ext">
+      <div class="project-item-main">
+        <div class="project-item-top">
+          <span class="project-name">Markdown Browser</span>
           <span class="project-badge badge-chrome">CHROME EXT</span>
         </div>
-        <div class="project-card-name">Markdown Browser</div>
-        <p class="project-card-desc">Browse and edit local Markdown files directly in Chrome — no server, no setup. Works with file:// URLs out of the box.</p>
-        <div class="project-card-footer">
-          <a class="project-cta" href="https://chromewebstore.google.com/detail/markdown-browser/egadnmmhblnmjphmjfblgijjhcfofghe" target="_blank" rel="noopener">Add to Chrome →</a>
-        </div>
+        <p class="project-desc">Browse and edit local Markdown files directly in Chrome — no server, no setup. Works with file:// URLs out of the box.</p>
       </div>
+      <a class="project-cta" href="https://chromewebstore.google.com/detail/markdown-browser/egadnmmhblnmjphmjfblgijjhcfofghe" target="_blank" rel="noopener">Add to Chrome →</a>
     </article>
 
-    <!-- Content Engine -->
-    <article class="project-card fade-in" data-type="github">
-      <div class="project-card-image-placeholder">
-        <span class="placeholder-icon">CAL</span>
-      </div>
-      <div class="project-card-body">
-        <div class="project-card-top">
+    <article class="project-item" data-type="github">
+      <div class="project-item-main">
+        <div class="project-item-top">
+          <span class="project-name">Content Engine</span>
           <span class="project-badge badge-github">GITHUB</span>
         </div>
-        <div class="project-card-name">Content Engine</div>
-        <p class="project-card-desc">Monthly social content calendar generator for founders. Upload your brand docs, fill a brief — get a full LinkedIn &amp; Twitter calendar via Gemini + n8n. Mock mode included.</p>
-        <div class="project-card-footer">
-          <a class="project-cta" href="https://github.com/abhi-geek/content-engine" target="_blank" rel="noopener">View on GitHub →</a>
-        </div>
+        <p class="project-desc">Monthly social content calendar generator for founders. Upload your brand docs, fill a brief — get a full LinkedIn &amp; Twitter calendar via Gemini + n8n. Mock mode included.</p>
       </div>
+      <a class="project-cta" href="https://github.com/abhi-geek/content-engine" target="_blank" rel="noopener">View on GitHub →</a>
     </article>
 
-    <!-- operators-claude-skills -->
-    <article class="project-card fade-in" data-type="github">
-      <div class="project-card-image-placeholder">
-        <span class="placeholder-icon">OPS</span>
-      </div>
-      <div class="project-card-body">
-        <div class="project-card-top">
+    <article class="project-item" data-type="github">
+      <div class="project-item-main">
+        <div class="project-item-top">
+          <span class="project-name">Operators Claude Skills</span>
           <span class="project-badge badge-github">GITHUB</span>
         </div>
-        <div class="project-card-name">Operators Claude Skills</div>
-        <p class="project-card-desc">Claude AI skills for deep-tech operators — IP strategy, legal structuring, regulatory pathway analysis, and fundraising narrative. Drop into any Claude workflow.</p>
-        <div class="project-card-footer">
-          <a class="project-cta" href="https://github.com/abhi-geek/operators-claude-skills" target="_blank" rel="noopener">View on GitHub →</a>
-        </div>
+        <p class="project-desc">Claude AI skills for deep-tech operators — IP strategy, legal structuring, regulatory pathway analysis, and fundraising narrative. Drop into any Claude workflow.</p>
       </div>
+      <a class="project-cta" href="https://github.com/abhi-geek/operators-claude-skills" target="_blank" rel="noopener">View on GitHub →</a>
     </article>
 
-    <!-- IP Base Pricing Model — full width -->
-    <article class="project-card full fade-in" data-type="paper">
-      <img
-        class="project-card-image"
-        src="../assets/ip_calc.png"
-        alt="IP Base Pricing Model — framework for pricing deep tech IP"
-        loading="lazy"
-      >
-      <div class="project-card-body">
-        <div class="project-card-top">
+    <article class="project-item" data-type="paper">
+      <div class="project-item-main">
+        <div class="project-item-top">
+          <span class="project-name">IP Base Pricing Model</span>
           <span class="project-badge badge-paper">PAPER</span>
         </div>
-        <div class="project-card-name">IP Base Pricing Model (IBPM)</div>
-        <p class="project-card-desc">A pricing framework for novel deep tech IP with no revenue history and no comparable transactions. Covers valuation anchors, risk-adjusted pricing, and negotiation floors for frontier science founders and IP counsel.</p>
-        <div class="project-card-footer">
-          <a class="project-cta" href="https://theoperators.substack.com/p/the-ip-base-pricing-model-ibpm" target="_blank" rel="noopener">Read the paper →</a>
-          <a class="project-source-link" href="https://theoperators.substack.com/" target="_blank" rel="noopener">The Operator's Book ↗</a>
-        </div>
+        <p class="project-desc">A pricing framework for novel deep tech IP with no revenue history and no comparable transactions. Covers valuation anchors, risk-adjusted pricing, and negotiation floors.</p>
       </div>
+      <a class="project-cta" href="https://theoperators.substack.com/p/the-ip-base-pricing-model-ibpm" target="_blank" rel="noopener">Read the paper →</a>
     </article>
 
   </div>
@@ -548,7 +410,6 @@
 </div>
 
 <script>
-  // Fade-in on scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
@@ -563,17 +424,15 @@
 
   // Filter
   const btns = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.project-card');
+  const items = document.querySelectorAll('.project-item');
 
   btns.forEach(btn => {
     btn.addEventListener('click', () => {
       btns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
       const filter = btn.dataset.filter;
-      cards.forEach(card => {
-        const show = filter === 'all' || card.dataset.type === filter;
-        card.style.display = show ? '' : 'none';
+      items.forEach(item => {
+        item.style.display = filter === 'all' || item.dataset.type === filter ? '' : 'none';
       });
     });
   });
